@@ -1,2 +1,2 @@
-# My-project
-SkillFactory Lab D1.6
+# SkillFactory
+Lab D1.6
