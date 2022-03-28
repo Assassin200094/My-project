@@ -1,2 +1,2 @@
 # My-project
-This is my first project on Github.
+SkillFactory Lab D1.6
