@@ -16,6 +16,7 @@ import random
 
 def todo():
     # Команда для входа в Django Shell (python3 manage.py shell)
+    # from news.models import *
     # удалять объекты
     User.objects.all().delete()
     Category.objects.all().delete()
