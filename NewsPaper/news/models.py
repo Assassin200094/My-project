@@ -64,3 +64,6 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rating -= 1
         self.save()
+
+class Russian_mat(models.Model):
+    word = models.CharField(max_length=64, unique=True, null=False)
