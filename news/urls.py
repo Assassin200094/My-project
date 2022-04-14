@@ -1,15 +1,14 @@
+
 from django.urls import path
-from .views import PostsList2, PostDetailView, PostCreateView, \
-                    PostUpdateView, PostDeleteView,PostsList, PostsList3
+from .views import PostList, PostDetail, PostCreateView, PostUpdateView, PostDeleteView, PostSearchView, CatSubView
 
-
-
-
-urlpatterns = [ path('search/', PostsList2.as_view()),
-                path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),  # Ссылка на детали товара
-                path('create/', PostCreateView.as_view(), name='post_create'),
-                path('create/<int:pk>', PostUpdateView.as_view(), name='post_update'),
-                path('delete/<int:pk>', PostDeleteView.as_view(), name='post_delete'),
-                path('', PostsList.as_view()),
-                path('post3/', PostsList3.as_view())
-                ]
+app_name = 'news'
+urlpatterns = [
+    path('', PostList.as_view()),
+    path('add/', PostCreateView.as_view(), name='post_add'),
+    path('search/', PostSearchView.as_view(), name='post_search'),
+    path('<int:pk>', PostDetail.as_view(), name='post_detail' ),
+    path('<int:pk>/edit', PostUpdateView.as_view(), name='post_edit'),
+    path('<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
+    path('subscribe/', CatSubView.as_view()),
+]

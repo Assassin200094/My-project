@@ -1,11 +1,18 @@
-from django_filters import FilterSet  # импортируем filterset, чем-то напоминающий знакомые дженерики
+from django_filters import FilterSet
 from .models import Post
 
 
 # создаём фильтр
 class PostFilter(FilterSet):
-    # Здесь в мета классе надо предоставить модель и указать поля,
-    # по которым будет фильтроваться (т. е. подбираться) информация о товарах
     class Meta:
         model = Post
-        fields = ('author', 'created', 'title')
+        fields = {
+            'created': ['date__gte'],
+            'title': ['icontains'],
+            'author': ['exact'],
+        }
+        labels = {'author': ('Автор'),}
+
+
+        # fields = ('author', 'created', 'head', 'post_type', 'cats',
+        #           'rating')

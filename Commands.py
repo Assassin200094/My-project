@@ -31,7 +31,7 @@ def todo():
 
     # создание категорий
     cat_games = Category.objects.create(name="Игры")
-    cat_music = Category.objects.create(name="Музыка")
+    cat_anime = Category.objects.create(name="Аниме")
     cat_cinema = Category.objects.create(name="Кино")
     cat_IT = Category.objects.create(name="IT")
 
@@ -39,8 +39,8 @@ def todo():
     text_article_games_cinema = """статья_игры_кино_Джека__статья_игры_кино_Джека__статья_игры_кино_Джека_
                                    _статья_игры_кино_Джека__статья_игры_кино_Джека__"""
 
-    text_article_music = """статья_музыка_Ричарда__статья_музыка_Ричарда__статья_музыка_Ричарда_
-                            _статья_музыка_Ричарда__статья_музыка_Ричарда__"""
+    text_article_anime = """статья_аниме_Ричарда__статья_аниме_Ричарда__статья_аниме_Ричарда_
+                            _статья_аниме_Ричарда__статья_аниме_Ричарда__"""
 
     text_news_IT = """новость_IT_Ричарда__новость_IT_Ричарда__новость_IT_Ричарда__новость_IT_Ричарда__
                     новость_IT_Ричарда__новость_IT_Ричарда__новость_IT_Ричарда__новость_IT_Ричарда__"""
@@ -49,13 +49,13 @@ def todo():
     article_jack = Post.objects.create(author=jack, post_type=Post.article, title="статья_игры_кино_Джека",
                                         text=text_article_games_cinema)
     article_richard = Post.objects.create(author=richard, post_type=Post.article, title="статья_музыка_Ричарда",
-                                        text=text_article_music)
+                                        text=text_article_anime)
     news_richard = Post.objects.create(author=richard, post_type=Post.news, title="новость_IT_Ричарда", text=text_news_IT)
 
     # присваивание категорий этим объектам
     PostCategory.objects.create(post=article_jack, category=cat_games)
     PostCategory.objects.create(post=article_jack, category=cat_cinema)
-    PostCategory.objects.create(post=article_richard, category=cat_music)
+    PostCategory.objects.create(post=article_richard, category=cat_anime)
     PostCategory.objects.create(post=news_richard, category=cat_IT)
 
     # создание комментариев
