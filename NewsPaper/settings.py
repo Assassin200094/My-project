@@ -35,20 +35,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django.contrib.sites',
     'django.contrib.flatpages',
-    #'fpages',
-
     'news',
-    #'accounts',
-    #'sign',
-
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # # ... include the providers you want to enable:
-    # 'allauth.socialaccount.providers.google',
+    'accounts',
+    # 'sign',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    'allauth.socialaccount.providers.google',
     # #'news.apps.AppointmentConfig',
     # 'django_apscheduler',
 ]
@@ -63,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
@@ -90,7 +85,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
-    # 'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
@@ -155,13 +150,13 @@ STATICFILES_DIRS = [
          BASE_DIR / "news",
 ]
 
-#LOGIN_URL = 'sign/login/'
-# LOGIN_URL = '/accounts/login/'
-LOGIN_URL = ''
+# LOGIN_URL = 'sign/login/'
+LOGIN_URL = '/accounts/login/'
+# LOGIN_URL = ''
 
 LOGIN_REDIRECT_URL = '/'
 
-#IN_URL = BASE_DIR / "News"
+# IN_URL = BASE_DIR / "News"
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -173,9 +168,11 @@ ACCOUNT_FORMS = {'signup': 'NewsPaper.models.BasicSignupForm'}
 
 EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
 EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
-EMAIL_HOST_USER = 'Skill.testing'  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
+EMAIL_HOST_USER = 'Skill.testing'  # ваше имя пользователя, например, если ваша почта user@yandex.ru,
+# то сюда надо писать user, иными словами, это всё то что идёт до собаки
 EMAIL_HOST_PASSWORD = 'qAzSe$123'  # пароль от почты
-EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
+EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках,
+# но включать его здесь обязательно
 #EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 'Skill.testing@yandex.ru'

@@ -1,4 +1,3 @@
-
 from django.urls import path
 from .views import PostList, PostDetail, PostCreateView, PostUpdateView, PostDeleteView, PostSearchView, CatSubView
 

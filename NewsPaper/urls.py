@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from .views import IndexView, upgrade_premium, upgrade_authors
+from .views import IndexView, upgrade_premium, upgrade_authors
 
 urlpatterns = [
-    # path('', IndexView.as_view(), name='index'),
-    # path('accounts/', include('allauth.urls')),
-    # path('accounts/', include('accounts.urls')),
+    path('', IndexView.as_view(), name='index'),
+    path('accounts/', include('allauth.urls')),
+    #path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('news/', include('news.urls')),
+    path('upgrade/premium/', upgrade_premium, name='upgrade_premium'),
+    path('upgrade/authors/', upgrade_authors, name='upgrade_authors')
 
 ]

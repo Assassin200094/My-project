@@ -1,0 +1,10 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+<p>Вы вышли из системы!</p>
+<button onclick="document.location='/'" class="btn btn-success">Авторизация</button>
+{% endblock content %}
+
+<!--
+<button onclick="document.location='{% url 'login' %}'" class="btn btn-success">Авторизация</button>
+-->

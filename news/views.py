@@ -6,7 +6,6 @@ from datetime import datetime
 from .models import *
 from .forms import PostForm
 from .filters import PostFilter
-from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives # send_mail
@@ -60,7 +59,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
             post = Post.objects.latest('pk')
             #print(post.title)
             # for cc in post.cats.all():
-            #     # получитьь все выбраные категории на форме
+            #     # получить все выбраные категории на форме
             #     print(f'autor {post.author} {post.author.id}   кат {cc} {cc.pk}')
             #     print(f'count {Subscribe.objects.all().filter(author=post.author, category=cc).count()}')
             #     if Subscribe.objects.all().filter(author=post.author, category=cc).count() == 0:
