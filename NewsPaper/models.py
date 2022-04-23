@@ -36,7 +36,7 @@ class BasicSignupForm(SignupForm):
             send_mail(
                 subject=f'Регистрация на портале Новостей',
                 message=f'Добрый день!! \n Пользователь {user.username} \n зарегистрировался на портале в {datetime.utcnow()}',
-                from_email='Skill.testing@yandex.ru',
+                from_email='vasyapupkin892@yandex.ru',
                 recipient_list=[user.email]
             )
 

@@ -6,6 +6,7 @@ from datetime import datetime
 from .models import *
 from .forms import PostForm
 from .filters import PostFilter
+from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives # send_mail
@@ -21,7 +22,7 @@ class PostList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['post_count'] = Post.objects.all().count()
-        context['post'] = Post.objects.all().order_by('-id')
+        #context['post'] = Post.objects.all().order_by('-id')
         context['time_now'] = datetime.utcnow()
         return context
 
@@ -59,7 +60,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
             post = Post.objects.latest('pk')
             #print(post.title)
             # for cc in post.cats.all():
-            #     # получить все выбраные категории на форме
+            #     # получить все выбранные категории на форме
             #     print(f'autor {post.author} {post.author.id}   кат {cc} {cc.pk}')
             #     print(f'count {Subscribe.objects.all().filter(author=post.author, category=cc).count()}')
             #     if Subscribe.objects.all().filter(author=post.author, category=cc).count() == 0:
@@ -68,17 +69,17 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
             for cat in post.cats.all():
                 for sub in Subscribe.objects.filter(category_id=cat.id):
-                    # получить всех авторов подписаных на категорию
+                    # получить всех авторов подписанных на категорию
                     #print(sub.user.id, cat.id)
 
                     if sub.user.email:
-                        # если есть майл
+                        # если есть мейл
 
                         # отправляем письмо
                         # send_mail(
                         #     subject=f'{post.author.user.username} {post.created.strftime("%d-%m-%Y %H:%M")}',  # имя клиента и дата записи будут в теме для удобства
                         #     message=f'{post.head} \n {post.text}',  # сообщение с кратким описанием проблемы
-                        #     from_email='Skill.testing@yandex.ru', # здесь указываете почту, с которой будете отправлять (об этом попозже)
+                        #     from_email='vasyapupkin892@yandex.ru', # здесь указываете почту, с которой будете отправлять (об этом попозже)
                         #     recipient_list=[post.author.user.email]  # здесь список получателей. Например, секретарь, сам врач и т. д.
                         # )
 
@@ -96,7 +97,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
                         msg = EmailMultiAlternatives(
                             subject=f'{cat} создана {post.created.strftime("%d-%m-%Y %H:%M")}',
                             # body=f'{post.head} \n {post.text}',  # это то же, что и message
-                            from_email='Skill.testing@yandex.ru',
+                            from_email='vasyapupkin892@yandex.ru',
                             to=[sub.user.email],  # это то же, что и recipients_list
                         )
                         msg.attach_alternative(html_content, "text/html")  # добавляем html

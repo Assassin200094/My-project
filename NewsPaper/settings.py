@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
-    # #'news.apps.AppointmentConfig',
-    # 'django_apscheduler',
+    # 'news.apps.AppointmentConfig',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -168,14 +168,14 @@ ACCOUNT_FORMS = {'signup': 'NewsPaper.models.BasicSignupForm'}
 
 EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
 EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
-EMAIL_HOST_USER = 'Skill.testing'  # ваше имя пользователя, например, если ваша почта user@yandex.ru,
+EMAIL_HOST_USER = 'vasyapupkin892'  # ваше имя пользователя, например, если ваша почта user@yandex.ru,
 # то сюда надо писать user, иными словами, это всё то что идёт до собаки
-EMAIL_HOST_PASSWORD = 'qAzSe$123'  # пароль от почты
+EMAIL_HOST_PASSWORD = 'VasyaPupkin'  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках,
 # но включать его здесь обязательно
 #EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = 'Skill.testing@yandex.ru'
+DEFAULT_FROM_EMAIL = 'vasyapupkin892@yandex.ru'
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 
