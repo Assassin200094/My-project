@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'news',
-    'accounts',
+    # 'accounts',
     # 'sign',
     'allauth',
     'allauth.account',
