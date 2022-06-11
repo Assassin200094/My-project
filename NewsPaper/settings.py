@@ -186,3 +186,122 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(asctime)s %(levelname)s %(name)s %(message)s'
+        },
+        'general': {
+            'format': '%(asctime)s %(levelname)s %(module)s %(message)s'
+        },
+        'errors': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s'
+        },
+        'warning': {
+            'format': '%(asctime)s %(pathname)s %(levelname)s %(message)s'
+        },
+
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+            },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+    },
+    'handlers': {
+        'console': {
+            # 'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+            #'filters': 'require_debug_true',
+        },
+        'mail_admins': {
+            'level': 'INFO',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'formatter': 'errors',
+        },
+        'general': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'general',
+            'filename': 'general.log',
+            'filters': ['require_debug_false'],
+        },
+        'errors': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'errors',
+            'filename': 'errors.log'
+        },
+        'security': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'general',
+            'filename': 'security.log'
+        },
+    },
+    'loggers': {
+        '': {
+            #'level': 'DEBUG ',
+            'handlers': ['console'],
+            'propagate': True
+        },
+        'NewsPaper': {
+            'level': 'INFO',
+            'handlers': ['general'],
+            'propagate': True
+         },
+        'news': {
+            'level': 'INFO',
+            'handlers': ['general'],
+            'propagate': True
+         },
+        'django': {
+            'level': 'INFO',
+            'handlers': ['general'],
+            'propagate': True
+         },
+        'django.request': {
+            'level': 'ERROR',
+            'handlers': ['errors', 'mail_admins'],
+            'propagate': True
+        },
+        'django.server': {
+            'level': 'ERROR',
+            'handlers': ['errors', 'mail_admins'],
+            'propagate': True
+        },
+        'django.template': {
+            'level': 'ERROR',
+            'handlers': ['errors'],
+            'propagate': True
+        },
+        'django.db_backends': {
+            'level': 'ERROR',
+            'handlers': ['errors'],
+            'propagate': True
+        },
+        'django.security': {
+            'level': 'ERROR',
+            'handlers': ['security'],
+            'propagate': True
+        },
+    }
+}
+
+LOCALE_PATH = [
+    os.path.join(BASE_DIR, 'locale')
+]
